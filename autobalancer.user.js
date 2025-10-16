@@ -3,7 +3,6 @@
 // @description  Automatically balance resources between villages
 // @author       Wwww
 // @version      2.2
-// @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/autobalancer.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/autobalancer.user.js
 // @match        https://*/*screen=storage
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
