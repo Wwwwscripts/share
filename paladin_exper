@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name        Paladin Exper
-// @description Trains pally automatically
-// @version      1.0
+// @author      Wwww
+// @version      1.1
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/paladin_exper.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/paladin_exper.user.js
-// @include     https://*/game.php?village=*&screen=statue&knight*
-// @author      Wwww
+// @include      https://*/game.php?village=*&screen=statue&knight*
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
 // ==/UserScript==
 
