@@ -8,15 +8,20 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send commit message to Discord
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Send last commit message to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          MESSAGE="${{ github.event.head_commit.message }}"
-          if [ -z "$MESSAGE" ]; then
-            MESSAGE="${{ github.event.commits[0].message }}"
-          fi
+          # vezmeme poslední commit message z aktuálního repa
+          MESSAGE=$(git log -1 --pretty=%B)
+
+          # escapování uvozovek pro JSON
           MESSAGE=$(echo "$MESSAGE" | sed 's/"/\\"/g')
+
+          # pošleme zprávu do Discordu
           curl -H "Content-Type: application/json" \
                -X POST \
                -d "{\"content\":\"💬 $MESSAGE\"}" \
