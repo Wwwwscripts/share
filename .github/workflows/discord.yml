@@ -2,18 +2,17 @@ name: Discord Notify
 
 on:
   push:
-    branches: [ main ]  # změň pokud máš jinou branch
+    branches: [ main ]  # ujisti se, že commit jde na main
 
 jobs:
   notify:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Send message to Discord
+      - name: Test Discord webhook
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "{\"content\":\"💬 ${{ github.event.head_commit.message }}\"}" \
+            -d '{"content":"💬 Test zpráva z GitHub Actions"}' \
             "$WEBHOOK"
