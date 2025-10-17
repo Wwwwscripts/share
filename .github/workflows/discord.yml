@@ -2,7 +2,7 @@ name: Discord Notify
 
 on:
   push:
-    branches: ["*"] # všechny branche
+    branches: ["*"]
 
 jobs:
   notify:
@@ -10,43 +10,47 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
         
-      - name: Send commit message to Discord (embed)
+      - name: Send commit message to Discord
         env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          # vezmeme poslední commit message a escapujeme uvozovky a nové řádky
-          MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ' | sed 's/"/\\"/g')
+          # kontrola, zda máme webhook
+          if [ -z "$DISCORD_WEBHOOK" ]; then
+            echo "Error: DISCORD_WEBHOOK secret is not set!"
+            exit 1
+          fi
+          
+          # získáme commit info
+          MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ' | sed 's/"/\\"/g' | sed "s/'/\\'/g")
           AUTHOR="${{ github.actor }}"
           REPO="${{ github.repository }}"
           BRANCH="${{ github.ref_name }}"
-          COMMIT="${{ github.sha }}"
+          COMMIT_SHORT="${{ github.sha }}"
+          COMMIT_SHORT="${COMMIT_SHORT:0:7}"
+          COMMIT_URL="https://github.com/$REPO/commit/${{ github.sha }}"
           
-          # vytvoříme JSON embed
-          JSON=$(cat <<'EOF'
+          # vytvoříme JSON
+          cat <<EOF > payload.json
           {
-            "embeds": [
-              {
-                "title": "New Commit in REPO_PLACEHOLDER",
-                "description": "MESSAGE_PLACEHOLDER",
-                "color": 5814783,
-                "fields": [
-                  {"name": "Author", "value": "AUTHOR_PLACEHOLDER", "inline": true},
-                  {"name": "Branch", "value": "BRANCH_PLACEHOLDER", "inline": true},
-                  {"name": "Commit", "value": "COMMIT_PLACEHOLDER", "inline": false}
-                ]
-              }
-            ]
+            "embeds": [{
+              "title": "📝 New Commit in $REPO",
+              "description": "$MESSAGE",
+              "color": 5814783,
+              "fields": [
+                {"name": "👤 Author", "value": "$AUTHOR", "inline": true},
+                {"name": "🌿 Branch", "value": "$BRANCH", "inline": true},
+                {"name": "🔗 Commit", "value": "[\`$COMMIT_SHORT\`]($COMMIT_URL)", "inline": false}
+              ],
+              "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
+            }]
           }
           EOF
-          )
           
-          # nahradíme placeholdery skutečnými hodnotami
-          JSON="${JSON//REPO_PLACEHOLDER/$REPO}"
-          JSON="${JSON//MESSAGE_PLACEHOLDER/$MESSAGE}"
-          JSON="${JSON//AUTHOR_PLACEHOLDER/$AUTHOR}"
-          JSON="${JSON//BRANCH_PLACEHOLDER/$BRANCH}"
-          JSON="${JSON//COMMIT_PLACEHOLDER/$COMMIT}"
-          
-          # pošleme embed do Discordu
-          curl -H "Content-Type: application/json"
+          # odešleme do Discordu
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d @payload.json \
+               "$DISCORD_WEBHOOK"
