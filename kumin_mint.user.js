@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kumin Mint
 // @author       GOAT
-// @version      1.12
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/kumin_mint.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/kumin_mint.user.js
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
