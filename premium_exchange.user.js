@@ -1,13 +1,11 @@
 // ==UserScript==
 // @name         Premium Exchange
-// @description  Automatically sell resources when the stock is not full.
 // @author       Wwww
-// @version      1.0
+// @version      1.1
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/premium_exchange.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/premium_exchange.user.js
 // @include      https://*/game.php*market&mode=exchange*
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
-// @grant        none
 // @run-at       document-ready
 // ==/UserScript==
 
