@@ -1,18 +1,23 @@
-name: Discord Test Notify
+name: Discord Notify
 
 on:
   push:
-    branches: ["*"]
+    branches: ["*"]  # všechny branche
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Test send to Discord
+      - name: Send commit message to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
+          MESSAGE="${{ github.event.head_commit.message }}"
+          if [ -z "$MESSAGE" ]; then
+            MESSAGE="${{ github.event.commits[0].message }}"
+          fi
+          MESSAGE=$(echo "$MESSAGE" | sed 's/"/\\"/g')
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content":"💬 Test message from GitHub Actions"}' \
+               -d "{\"content\":\"💬 $MESSAGE\"}" \
                "$WEBHOOK"
