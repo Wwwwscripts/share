@@ -17,13 +17,11 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          # kontrola, zda máme webhook
           if [ -z "$DISCORD_WEBHOOK" ]; then
             echo "Error: DISCORD_WEBHOOK secret is not set!"
             exit 1
           fi
           
-          # získáme commit message (první řádek = title, zbytek = description)
           COMMIT_TITLE=$(git log -1 --pretty=%s | sed 's/"/\\"/g' | sed "s/'/\\'/g")
           COMMIT_BODY=$(git log -1 --pretty=%b | sed 's/"/\\"/g' | sed "s/'/\\'/g" | tr '\n' ' ')
           AUTHOR="${{ github.actor }}"
@@ -32,7 +30,6 @@ jobs:
           COMMIT_SHORT="${COMMIT_SHORT:0:7}"
           COMMIT_URL="https://github.com/$REPO/commit/${{ github.sha }}"
           
-          # vytvoříme JSON
           cat <<EOF > payload.json
           {
             "embeds": [{
@@ -48,20 +45,7 @@ jobs:
           }
           EOF
           
-          # odešleme do Discordu
           curl -H "Content-Type: application/json" \
                -X POST \
                -d @payload.json \
                "$DISCORD_WEBHOOK"
-```
-
-**Změny:**
-- ✅ **Title** = První řádek commit message (`git log --pretty=%s`)
-- ✅ **Description** = Zbytek commit message pokud existuje (`git log --pretty=%b`)
-- ✅ Pak Author a Commit jako fields
-
-Takže když uděláš commit:
-```
-Update kokotina
-
-testuju jestli ta pičovina už funguje jak má.
