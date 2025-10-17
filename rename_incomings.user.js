@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Rename Incomings
 // @author       Wwww
-// @version      1.11
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/rename_incomings.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/rename_incomings.user.js
 // @match        https://*/game.php?*&mode=incomings*
