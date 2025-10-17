@@ -2,7 +2,7 @@ name: Discord Notify
 
 on:
   push:
-    branches: ["*"]
+    branches: ["*"]  # všechny branche
 
 jobs:
   notify:
@@ -15,8 +15,11 @@ jobs:
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          MESSAGE=$(git log -1 --pretty=%B)
-          MESSAGE=$(echo "$MESSAGE" | sed 's/"/\\"/g')
+          # vezmeme poslední commit message
+          # odstraníme nové řádky a escapujeme uvozovky, aby JSON byl validní
+          MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ' | sed 's/"/\\"/g')
+
+          # pošleme zprávu do Discordu
           curl -H "Content-Type: application/json" \
                -X POST \
                -d "{\"content\":\"💬 $MESSAGE\"}" \
