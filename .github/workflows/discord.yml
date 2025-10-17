@@ -8,24 +8,16 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send commit message with link to Discord
+      - name: Send commit message to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          # vezmeme commit message z head_commit, fallback na commits[0]
           MESSAGE="${{ github.event.head_commit.message }}"
           if [ -z "$MESSAGE" ]; then
             MESSAGE="${{ github.event.commits[0].message }}"
           fi
-
-          # escapování uvozovek, aby JSON byl validní
           MESSAGE=$(echo "$MESSAGE" | sed 's/"/\\"/g')
-
-          # URL na commit
-          COMMIT_URL="https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
-
-          # pošli zprávu do Discordu
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\":\"💬 $MESSAGE\\n🔗 $COMMIT_URL\"}" \
+               -d "{\"content\":\"💬 $MESSAGE\"}" \
                "$WEBHOOK"
