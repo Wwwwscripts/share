@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Mass Scavenge
 // @author       Wwww
-// @version      1.2
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_mass_scavenge.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_mass_scavenge.user.js
 // @match        https://*/*screen=place&mode=scavenge_mass*
