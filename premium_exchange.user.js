@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Premium Exchange
 // @author       Wwww
-// @version      1.11
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/premium_exchange.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/premium_exchange.user.js
 // @include      https://*/game.php*market&mode=exchange*
