@@ -12,8 +12,8 @@ jobs:
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          # escape speciální znaky, aby JSON byl validní
-          MESSAGE=$(echo "${{ github.event.head_commit.message }}" | sed 's/"/\\"/g')
+          # vezmeme zprávu prvního commitu v push eventu a escapujeme uvozovky
+          MESSAGE=$(echo "${{ github.event.commits[0].message }}" | sed 's/"/\\"/g')
           curl -H "Content-Type: application/json" \
             -X POST \
             -d "{\"content\":\"💬 $MESSAGE\"}" \
