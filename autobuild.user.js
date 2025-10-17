@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Auto Builder with Rewards
-// @version      1.3
+// @version      1.0
 // @description  Adds buildings to queue automatically with presets and reward collection
 // @author       Wwww
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/autobuild.meta.js
