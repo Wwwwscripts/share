@@ -2,7 +2,7 @@ name: Discord Notify
 
 on:
   push:
-    branches: ["*"]  # všechny branche
+    branches: ["*"]
 
 jobs:
   notify:
@@ -11,16 +11,38 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Send last commit message to Discord
+      - name: Send commit message to Discord (embed)
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           # vezmeme poslední commit message
-          # odstraníme nové řádky a escapujeme uvozovky, aby JSON byl validní
           MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ' | sed 's/"/\\"/g')
+          AUTHOR="${{ github.actor }}"
+          REPO="${{ github.repository }}"
+          BRANCH="${{ github.ref_name }}"
+          COMMIT="${{ github.sha }}"
 
-          # pošleme zprávu do Discordu
+          # vytvoření JSON pro embed
+          JSON=$(cat <<EOF
+{
+  "embeds": [
+    {
+      "title": "New Commit in $REPO",
+      "description": "$MESSAGE",
+      "color": 5814783,
+      "fields": [
+        {"name": "Author", "value": "$AUTHOR", "inline": true},
+        {"name": "Branch", "value": "$BRANCH", "inline": true},
+        {"name": "Commit", "value": "$COMMIT", "inline": false}
+      ]
+    }
+  ]
+}
+EOF
+)
+
+          # pošleme embed do Discordu
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\":\"💬 $MESSAGE\"}" \
+               -d "$JSON" \
                "$WEBHOOK"
