@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Paladin Exper
 // @author      Wwww
-// @version      1.11
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/paladin_exper.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/paladin_exper.user.js
 // @include      https://*/game.php?village=*&screen=statue&knight*
