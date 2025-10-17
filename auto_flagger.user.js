@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Flagger
 // @author       Wwww
-// @version      1.11
+// @version      1.12
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_flagger.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_flagger.user.js
 // @match        https://*/game.php?*screen=train*mode=mass*
