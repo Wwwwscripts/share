@@ -2,7 +2,7 @@ name: Discord Notify
 
 on:
   push:
-    branches: ["*"]
+    branches: ["*"]  # všechny branche
 
 jobs:
   notify:
@@ -15,14 +15,14 @@ jobs:
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          # vezmeme poslední commit message
+          # vezmeme poslední commit message a escapujeme uvozovky a nové řádky
           MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ' | sed 's/"/\\"/g')
           AUTHOR="${{ github.actor }}"
           REPO="${{ github.repository }}"
           BRANCH="${{ github.ref_name }}"
           COMMIT="${{ github.sha }}"
 
-          # vytvoření JSON pro embed
+          # správně odsazený EOF blok pro JSON embed
           JSON=$(cat <<EOF
 {
   "embeds": [
