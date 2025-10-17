@@ -8,13 +8,31 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send commit message to Discord
+      - name: Send commit message with link to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          REPO_NAME: ${{ github.repository }}
         run: |
-          # vezmeme zprávu prvního commitu v push eventu a escapujeme uvozovky
-          MESSAGE=$(echo "${{ github.event.commits[0].message }}" | sed 's/"/\\"/g')
+          # Kontrola, jestli je správný repozitář
+          if [ "$REPO_NAME" != "Wwwwscripts/share" ]; then
+            echo "Not this repo, skipping Discord notification."
+            exit 0
+          fi
+
+          # Získání commit message – fallback pro web commit
+          MESSAGE="${{ github.event.head_commit.message }}"
+          if [ -z "$MESSAGE" ]; then
+            MESSAGE="${{ github.event.commits[0].message }}"
+          fi
+
+          # Escapování uvozovek
+          MESSAGE=$(echo "$MESSAGE" | sed 's/"/\\"/g')
+
+          # URL na commit
+          COMMIT_URL="https://github.com/${REPO_NAME}/commit/${{ github.sha }}"
+
+          # Poslání zprávy do Discordu
           curl -H "Content-Type: application/json" \
-            -X POST \
-            -d "{\"content\":\"💬 $MESSAGE\"}" \
-            "$WEBHOOK"
+               -X POST \
+               -d "{\"content\":\"💬 $MESSAGE\\n🔗 $COMMIT_URL\"}" \
+               "$WEBHOOK"
