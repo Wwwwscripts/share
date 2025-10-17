@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Command sender
 // @author       GOAT
-// @version      1.11
+// @version      1.111
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_command_sender.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_command_sender.user.js
 // @include      *:/*/*
