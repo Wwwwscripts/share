@@ -2,7 +2,7 @@
 // @name         Auto Balancer
 // @description  Automatically balance resources between villages
 // @author       Wwww
-// @version      2.3
+// @version      1.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/autobalancer.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/autobalancer.user.js
 // @match        https://*/*screen=storage
