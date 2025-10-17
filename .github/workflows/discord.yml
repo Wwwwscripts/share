@@ -27,7 +27,6 @@ jobs:
           MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ' | sed 's/"/\\"/g' | sed "s/'/\\'/g")
           AUTHOR="${{ github.actor }}"
           REPO="${{ github.repository }}"
-          BRANCH="${{ github.ref_name }}"
           COMMIT_SHORT="${{ github.sha }}"
           COMMIT_SHORT="${COMMIT_SHORT:0:7}"
           COMMIT_URL="https://github.com/$REPO/commit/${{ github.sha }}"
@@ -36,13 +35,12 @@ jobs:
           cat <<EOF > payload.json
           {
             "embeds": [{
-              "title": "📝 New Commit in $REPO",
+              "title": "🔔 NEW UPDATE",
               "description": "$MESSAGE",
               "color": 5814783,
               "fields": [
                 {"name": "👤 Author", "value": "$AUTHOR", "inline": true},
-                {"name": "🌿 Branch", "value": "$BRANCH", "inline": true},
-                {"name": "🔗 Commit", "value": "[\`$COMMIT_SHORT\`]($COMMIT_URL)", "inline": false}
+                {"name": "🔗 Commit", "value": "[\`$COMMIT_SHORT\`]($COMMIT_URL)", "inline": true}
               ],
               "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
             }]
