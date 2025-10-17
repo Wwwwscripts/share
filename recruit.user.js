@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Recruit
 // @author       Wwww
-// @version      1.11
+// @version      1.12
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.user.js
-// @match        https://*/game.php?*screen=train*
+// @match        https://*/game.php?*screen=train&mode=train*
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
 // @run-at       document-ready
 // @grant        none
