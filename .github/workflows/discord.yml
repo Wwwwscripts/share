@@ -23,8 +23,9 @@ jobs:
             exit 1
           fi
           
-          # získáme commit info
-          MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ' | sed 's/"/\\"/g' | sed "s/'/\\'/g")
+          # získáme commit message (první řádek = title, zbytek = description)
+          COMMIT_TITLE=$(git log -1 --pretty=%s | sed 's/"/\\"/g' | sed "s/'/\\'/g")
+          COMMIT_BODY=$(git log -1 --pretty=%b | sed 's/"/\\"/g' | sed "s/'/\\'/g" | tr '\n' ' ')
           AUTHOR="${{ github.actor }}"
           REPO="${{ github.repository }}"
           COMMIT_SHORT="${{ github.sha }}"
@@ -35,8 +36,8 @@ jobs:
           cat <<EOF > payload.json
           {
             "embeds": [{
-              "title": "🔔 NEW UPDATE",
-              "description": "$MESSAGE",
+              "title": "$COMMIT_TITLE",
+              "description": "$COMMIT_BODY",
               "color": 5814783,
               "fields": [
                 {"name": "👤 Author", "value": "$AUTHOR", "inline": true},
@@ -52,3 +53,15 @@ jobs:
                -X POST \
                -d @payload.json \
                "$DISCORD_WEBHOOK"
+```
+
+**Změny:**
+- ✅ **Title** = První řádek commit message (`git log --pretty=%s`)
+- ✅ **Description** = Zbytek commit message pokud existuje (`git log --pretty=%b`)
+- ✅ Pak Author a Commit jako fields
+
+Takže když uděláš commit:
+```
+Update kokotina
+
+testuju jestli ta pičovina už funguje jak má.
