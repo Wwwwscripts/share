@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Scavenge (withou premium, Spears only)
 // @author       Wwww
-// @version      1.11
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_scavenge.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_scavenge.user.js
 // @match        https://*/game.php?*screen=place&*mode=scavenge
