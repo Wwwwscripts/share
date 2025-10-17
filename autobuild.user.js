@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Auto Builder with Rewards
-// @version      1.2
+// @version      1.21
 // @author       Wwww
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/autobuild.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/autobuild.user.js
