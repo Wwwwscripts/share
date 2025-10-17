@@ -2,7 +2,7 @@ name: Discord Notify
 
 on:
   push:
-    branches: [ main ]  # změň, pokud máš jinou branch
+    branches: [ main ]  # změň pokud máš jinou branch
 
 jobs:
   notify:
@@ -15,5 +15,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "{\"content\":\"📌 ${{ github.actor }} pushed to ${{ github.repository }}\\nMessage: ${{ github.event.head_commit.message }}\\nhttps://github.com/${{ github.repository }}/commit/${{ github.sha }}\"}" \
+            -d "{\"content\":\"💬 ${{ github.event.head_commit.message }}\"}" \
             "$WEBHOOK"
