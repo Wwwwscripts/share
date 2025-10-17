@@ -1,14 +1,11 @@
 // ==UserScript==
 // @name         Recruit
-// @namespace    http://tampermonkey.net/
+// @author       Wwww
 // @version      1.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.user.js
-// @description  Script for recruit with village-specific settings
-// @author       Wwww
 // @match        https://*/game.php?*screen=train*
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
-// @grant        none
 // @run-at       document-ready
 // ==/UserScript==
 
