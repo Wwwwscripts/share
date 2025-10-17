@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kumin Farm
 // @author       GOAT
-// @version      1.11
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/kumin_farm.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/kumin_farm.user.js
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
