@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Balancer
 // @author       Wwww
-// @version      1.11
+// @version      2.0
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/autobalancer.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/autobalancer.user.js
 // @match        https://*/*screen=storage
