@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Mass Scavenge
 // @author       GOAT
-// @version      1.0
+// @version      1.1
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_mass_scavenge.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/auto_mass_scavenge.user.js
 // @match        https://*/game.php?*mode=scavenge_mass*
