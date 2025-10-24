@@ -1,10 +1,13 @@
 // ==UserScript==
 // @name         Recruit
 // @author       Wwww
-// @version      2.0
+// @version      2.1
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.user.js
-// @match        https://*/game.php?*screen=train&mode=train*
+// @match        https://*/game.php?*screen=train*
+// @exclude      https://*/game.php?*screen=train&mode=decommission
+// @exclude      https://*/game.php?*screen=train&mode=mass
+// @exclude      https://*/game.php?*screen=train&mode=mass_decommission
 // @icon         https://raw.githubusercontent.com/Wwwwscripts/share/refs/heads/main/W.png
 // @run-at       document-ready
 // @grant        none
