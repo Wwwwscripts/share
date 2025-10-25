@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Recruit
 // @author       Wwww
-// @version      2.1
+// @version      2.2
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/recruit.user.js
 // @match        https://*/game.php?*screen=train*
