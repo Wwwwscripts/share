@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TW Bot Notifier
 // @author       Wwww
-// @version      1.0
+// @version      1.1
 // @updateURL    https://raw.githubusercontent.com/Wwwwscripts/share/main/TW_Bot_Notifier.meta.js
 // @downloadURL  https://raw.githubusercontent.com/Wwwwscripts/share/main/TW_Bot_Notifier.user.js
 // @match        https://*/game.php?*
@@ -16,7 +16,7 @@
 
     // KONFIGURACE
     const BOT_API_URL = "http://151.242.59.109";
-    const CHECK_INTERVAL = 10 * 1000;
+    const CHECK_INTERVAL = 30 * 1000; // Změněno z 10 na 30 sekund
     const RETRY_ATTEMPTS = 3;
     const RETRY_DELAY = 2000;
 
